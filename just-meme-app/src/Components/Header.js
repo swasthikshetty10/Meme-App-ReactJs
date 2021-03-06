@@ -13,19 +13,19 @@ function Header() {
         <Wrapper>
             <HeaderLeft>
                 <div className="logo">
-                    <img src = "https://cdn150.picsart.com/upscale-241747540029212.png"></img>
+                    <img src = "https://i.ebayimg.com/images/g/dBMAAMXQaOVRjRim/s-l300.jpg"></img>
                 </div>
                
                 <Input>
                 <SearchIcon/>
-                <input className="Input" type = "text"/>
+                <input className="Input" type = "text" placeholder="Search memes"/>
                 </Input>
                 
                 
 
             </HeaderLeft>
             <HeaderCenter>
-                <div className = 'header_option homeicon'>
+                <div className = 'header_option' id = "homeicon">
                 <HomeIcon fontSize="large"/>
                 </div>
                 <div className = 'header_option'>
@@ -70,13 +70,13 @@ const Wrapper = styled.div`
 
 `
 const HeaderLeft = styled.div`
-display : flex;
+    display : flex;
 
-img {
-    max-height: 40px;
-    color: rgb(129, 89, 240);
-  
-  }
+    img {
+        max-height: 40px;
+        color: rgb(129, 89, 240);
+    
+      }
 `
 
 const Input = styled.div`
@@ -97,45 +97,51 @@ const Input = styled.div`
     }
 `
 const HeaderCenter = styled.div`
+    margin-top : 2px;
+    display : flex;
+    flex-wrap: wrap;
+    justify-content : center;
+    #homeicon >  .MuiSvgIcon-root{
+        color: rgb(129, 89, 240);  
 
-display : flex;
-flex-wrap: wrap;
-justify-content : center;
-.homeicon >  .MuiSvgIcon-root{
-    color : 
-}
-.header_option homeicon > .MuiSvgIcon-root {
-    color: rgb(129, 89, 240);  
-}
-.header_option>.MuiSvgIcon-root {
-    color: gray;
-  }
-  
-.header_option:hover>.MuiSvgIcon-root {
-    color: rgb(129, 89, 240);
-  }
-  
-.header_option {
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    cursor: pointer;
-  }
-  
-.header_option:hover {
-    background-color: rgb(233, 233, 233);
-    border-radius: 20px;
-  }
+    }
+    #homeicon{
+        border-bottom : 4px solid rgb(129, 89, 240); 
+    }
+    .header_option homeicon > .MuiSvgIcon-root {
+        color: rgb(129, 89, 240);  
+    }
+    .header_option>.MuiSvgIcon-root {
+        color: gray;
+      }
+
+    .header_option:hover>.MuiSvgIcon-root {
+        color: rgb(129, 89, 240);
+      }
+
+    .header_option {
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        cursor: pointer;
+      }
+
+    .header_option:hover {
+        background-color: rgb(233, 233, 233);
+        border-radius: 20px;
+      }
 
 
 `
 const HeaderRight = styled.div`
-display : flex;
+    display : flex;
+    align-items : center;
+    
 `
 const HeaderInfo = styled.div`
-display : flex;
-align-items : center;
-h4{
-    margin-left : 10px;
-}
+    display : flex;
+    align-items : center;
+    h4{
+        margin-left : 2px;
+    }
 `
