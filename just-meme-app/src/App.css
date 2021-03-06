@@ -1,8 +1,28 @@
-.test {
-  background-color: aqua;
-
-}
+.test {}
 
 .logo>img {
   height: 40px;
+
+
+}
+
+
+.header_option>.MuiSvgIcon-root {
+  color: gray
+}
+
+.header_option:hover>.MuiSvgIcon-root {
+  color: rgb(129, 89, 240);
+}
+
+.header_option {
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  cursor: pointer;
+}
+
+.header_option:hover {
+  background-color: rgb(233, 233, 233);
+  border-radius: 20px;
 }
