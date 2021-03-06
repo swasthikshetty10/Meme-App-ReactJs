@@ -20,8 +20,8 @@ function Header() {
                 <SearchIcon/>
                 <input className="Input" type = "text" placeholder="Search memes"/>
                 </Input>
-                
-                
+    
+
 
             </HeaderLeft>
             <HeaderCenter>

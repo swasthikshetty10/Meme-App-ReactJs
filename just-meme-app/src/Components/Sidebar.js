@@ -1,14 +1,33 @@
+
 import React from 'react'
 import SidebarRow from './SidebarRow.js'
+import styled from 'styled-components'
+
+
 function Sidebar() {
     return (
-        <div>
-        <SidebarRow Name="DankMeme"/>
-        <SidebarRow Name="desiMeme"/>
+        
+        <SidebarWrapper>
+            <SidebarRow name="DankMeme" />
+            <SidebarRow name="DesiMeme"/>
+            <SidebarRow name="DankMeme" />
+            <SidebarRow name="DesiMeme"/>
+            <SidebarRow name="DankMeme" />
+            <SidebarRow name="DesiMeme"/>
+            <SidebarRow name="DankMeme" />
+            <SidebarRow name="DesiMeme"/>
+            <SidebarRow name="DankMeme" />
+            <SidebarRow name="DesiMeme"/>
+            <SidebarRow name="DankMeme" />
+            <SidebarRow name="DesiMeme"/>
 
-        </div>
+        </SidebarWrapper>
+        
         
     )
 }
 
 export default Sidebar
+
+const SidebarWrapper = styled.div`
+`
