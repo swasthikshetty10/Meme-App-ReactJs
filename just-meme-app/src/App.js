@@ -1,20 +1,27 @@
 
 import './App.css';
 import Header from './Components/Header.js'
-import Sidebar from './Components/Sidebar.js'
+
 import Feed from './Components/Feed.js'
+import styled from 'styled-components'
 function App() {
   return (
     <div> 
     {/* Header Components*/ }
     <Header/>
     {/* SideBar Components */ }
-    <Sidebar/>
+    <Body>
+   
     {/* Feed Components */ }
     <Feed/>
+    </Body>
     </div>
  
   );
 }
 
 export default App;
+
+const Body = styled.div`
+
+`

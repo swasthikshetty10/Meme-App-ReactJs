@@ -7,11 +7,14 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import { Avatar , IconButton } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Sidebar from './Sidebar.js'
 
 function Header() {
     return (
         <Wrapper>
             <HeaderLeft>
+            <div className="Sidebar">
+                <Sidebar/></div>
                 <div className="logo">
                     <img src = "https://i.ebayimg.com/images/g/dBMAAMXQaOVRjRim/s-l300.jpg"></img>
                 </div>
@@ -71,7 +74,9 @@ const Wrapper = styled.div`
 `
 const HeaderLeft = styled.div`
     display : flex;
-
+    .Sidebar{
+        padding: 10px
+    }
     img {
         max-height: 40px;
         color: rgb(129, 89, 240);
