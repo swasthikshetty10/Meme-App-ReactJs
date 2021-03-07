@@ -1,46 +1,8 @@
 
-// import React from 'react'
 import SidebarRow from './SidebarRow.js'
-// import styled from 'styled-components'
 import CloseIcon from '@material-ui/icons/Close';
-
-// import { BrowserRouter , Switch ,Route} from 'react-router-dom'
-// import {useState} from 'react-dom'
-// function Sidebar() {
-//     return (
-//         <>
-//         <BrowserRouter>
-//         <SidebarWrapper>
-          
-//             <div className="CloseIcon"><CloseIcon/></div>
-            
-//             <SidebarRow name="DankMeme" />
-//             <SidebarRow name="DesiMeme"/>
-//             <SidebarRow name="DankMeme" />
-//             <SidebarRow name="DesiMeme"/>
-//             <SidebarRow name="DankMeme" />
-//             <SidebarRow name="DesiMeme"/>
-//             <SidebarRow name="DankMeme" />
-//             <SidebarRow name="DesiMeme"/>
-//             <SidebarRow name="DankMeme" />
-//             <SidebarRow name="DesiMeme"/>
-//             <SidebarRow name="DankMeme" />
-//             <SidebarRow name="DesiMeme"/>
-
-//         </SidebarWrapper>
-//         </BrowserRouter>
-//         </>
-        
-//     )
-// }
-
-// export default Sidebar
-
-
 import styled from 'styled-components'
 import React, { useState } from 'react';
-
-
 import { SidebarData } from './SidebarData';
 import './Sidebar.css';
 import { IconContext } from 'react-icons';
@@ -84,18 +46,7 @@ function Sidebar() {
 export default Sidebar;
 
 const SidebarWrapper = styled.div`
->  .MuiSvgIcon-root{
-    color: #000;
-    position: absolute;
-    right: 0;
-    z-index: 9999;
-    line-height: 20px;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 22px;
-    top: 55px;
-    cursor: pointer;
-}
+
 .sidebar {
     background-color: #060b26;
     height: 80px;
@@ -122,7 +73,6 @@ const SidebarWrapper = styled.div`
     display: flex;
     justify-content: center;
     position: fixed;
-    top: 0;
     left: -100%;
     transition: 850ms;
 }

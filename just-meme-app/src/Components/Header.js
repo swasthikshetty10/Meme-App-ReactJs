@@ -11,10 +11,10 @@ import Sidebar from './Sidebar.js'
 
 function Header() {
     return (
-        <Wrapper>
+        <>
+        <NavWrapper>
             <HeaderLeft>
-            <div className="Sidebar">
-                <Sidebar/></div>
+            
                 <div className="logo">
                     <img src = "https://i.ebayimg.com/images/g/dBMAAMXQaOVRjRim/s-l300.jpg"></img>
                 </div>
@@ -27,7 +27,26 @@ function Header() {
 
 
             </HeaderLeft>
+            
+            <HeaderRight>
+                <HeaderInfo>
+                    <Avatar/>
+                    <h4>Swasthik</h4>
+                </HeaderInfo>
+                <IconButton>
+                    <ExpandMoreIcon/>
+                </IconButton>
+            </HeaderRight>
+            
+        </NavWrapper>
+        <Wrapper>
+
+            
+
             <HeaderCenter>
+            <div className="header_option" id="sidebar" > 
+                <Sidebar/>
+            </div>
                 <div className = 'header_option' id = "homeicon">
                 <HomeIcon fontSize="large"/>
                 </div>
@@ -42,16 +61,9 @@ function Header() {
                 </div>
                 
             </HeaderCenter>
-            <HeaderRight>
-                <HeaderInfo>
-                    <Avatar/>
-                    <h4>Swasthik</h4>
-                </HeaderInfo>
-                <IconButton>
-                    <ExpandMoreIcon/>
-                </IconButton>
-            </HeaderRight>
         </Wrapper>
+        </>
+
     )
 }
 
@@ -60,6 +72,13 @@ export default Header
 /* CSS */
 
 const Wrapper = styled.div`
+    background-color : white;  
+    padding : 15px 20px;
+    box-shadow: 0px 5px 8px -9px rgba(0,0,0,0.75);
+
+`
+
+const NavWrapper = styled.div`
     display : flex;
     padding : 15px 20px;
     justify-content : space-between;
@@ -70,7 +89,7 @@ const Wrapper = styled.div`
     box-shadow: 0px 5px 8px -9px rgba(0,0,0,0.75);
     flex-wrap: wrap;
     
-
+    
 `
 const HeaderLeft = styled.div`
     display : flex;
@@ -105,6 +124,7 @@ const HeaderCenter = styled.div`
     margin-top : 2px;
     display : flex;
     flex-wrap: wrap;
+    align-items : left;
     justify-content : center;
     #homeicon >  .MuiSvgIcon-root{
         color: rgb(129, 89, 240);  
@@ -136,7 +156,7 @@ const HeaderCenter = styled.div`
         border-radius: 20px;
       }
 
-
+    
 `
 const HeaderRight = styled.div`
     display : flex;
