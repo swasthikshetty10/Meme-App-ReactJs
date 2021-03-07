@@ -46,7 +46,7 @@ function Sidebar() {
 export default Sidebar;
 
 const SidebarWrapper = styled.div`
-
+z-index : 9999;
 .sidebar {
     background-color: #060b26;
     height: 80px;
@@ -67,6 +67,7 @@ const SidebarWrapper = styled.div`
 }
 
 .sidebar-menu {
+    margin-top : 22px;
     background-color: #d4d4d4;
     width: 250px;
     height: 100vh;

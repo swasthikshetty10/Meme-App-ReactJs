@@ -26,7 +26,7 @@ h4{
     font-weight: 600;
 }
 :hover{
-    background-color :  rgb(231, 231, 231);
+    background-color :  rgb(240, 240, 240);
     border-radius: 10px
 }
 
