@@ -2,7 +2,7 @@
 import './App.css';
 import Header from './Components/Header.js'
 
-import Login from './Components/Login.js'
+import Login from './Components/SignUp.js'
 import Feed from './Components/Feed.js'
 import styled from 'styled-components'
 import { Container } from 'react-bootstrap'

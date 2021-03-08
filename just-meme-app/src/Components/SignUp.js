@@ -1,6 +1,7 @@
 import React , { useRef }from 'react'
 import { Form , Button , Card } from 'react-bootstrap'
-function Login() {
+//import './bootstrap.css'
+function SignUp() {
     const emailRef = useRef()
     const passwordRef  = useRef()
     const passwordConfRef = useRef()
@@ -39,4 +40,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp
