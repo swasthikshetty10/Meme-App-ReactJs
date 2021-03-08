@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import SendPost from './PostFeed.js'
 import Post from './PostCard.js'
 
-function Feed({ UserUrl }) {
+function Feed() {
     return (
         <div>
             <FeedWrapper>
@@ -24,8 +24,14 @@ function Feed({ UserUrl }) {
 export default Feed
 
 const FeedWrapper = styled.div`
+
+
 width : 80%;
-max-width: 888px;
+max-width: 600px;
 margin: 0 auto;
 margin-top : 15px;
+@media only screen and (max-device-width: 600px){
+        
+    width : 90%;
+}
 `

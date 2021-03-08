@@ -98,7 +98,7 @@ const NavWrapper = styled.div`
     
     @media only screen and (max-device-width: 480px){
          
-
+        height : 15%;
 
     }
     
