@@ -4,35 +4,56 @@ import styled from 'styled-components'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 function PostCard({profilePic , image , username , timestamp , message ,liked, likes}) {
     
+    const [_liked , setLiked] = useState(liked)
+
+    const [_likes , setLikes] = useState(likes)
+    const addlike = ()  =>{
+        // console.log(liked);
+        // console.log(_likes)
+        if(_liked){
+            
+            setLikes(_likes -1);
+            
+        }
+        if(!_liked){
+            
+            setLikes(_likes +1);
+            
+        }
+        setLiked(!_liked);
+        
+        
+    }
 
     const Liked = props =>{
         let { isLiked } = props;
+
         if(isLiked){
             return(
-                <div className="LikeCmtIcon red">
+                <div onClick = {addlike} className="LikeCmtIcon red">
                     <FavoriteIcon  />
                     </div>
             )
             }
         else if (!isLiked){
             return(
-                <div className="LikeCmtIcon">
+                <div onClick = {addlike} className="LikeCmtIcon">
                     <FavoriteBorderIcon/>
                     </div>
             )
         
         }
         return(
-            <div className="LikeCmtIcon">
+            <div onClick = {addlike} className="LikeCmtIcon">
                 <FavoriteBorderIcon/>
                 </div>
         )
       }
     return (
-        <Card>
+        <Card className = {timestamp}>
         <Top>
             <Avatar src={profilePic} className = "Avatar"/>
             <PostInfo>
@@ -49,14 +70,14 @@ function PostCard({profilePic , image , username , timestamp , message ,liked, l
 
         <Bottom>
             <div className= "LikeCmt ">
-                <Liked  isLiked={liked}/>
+                <Liked  isLiked={_liked}/>
                 <div className="LikeCmtIcon">
                 <QuestionAnswerRoundedIcon/>
                 </div>
                 
             </div>
             <div className="Title">
-            <h4>{ likes } Likes</h4>
+            <h4>{ _likes } Likes</h4>
             
             </div>
             
