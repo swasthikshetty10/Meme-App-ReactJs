@@ -4,7 +4,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import styled from 'styled-components'
 import React, { useState } from 'react';
 import { SidebarData } from './SidebarData';
-import './Sidebar.css';
 import { IconContext } from 'react-icons';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 function Sidebar() {
@@ -14,7 +13,7 @@ function Sidebar() {
 
   return (
     <SidebarWrapper> 
-      <IconContext.Provider value={{ color: 'rgb(0, 0, 0)' }}>
+      <IconContext.Provider className="Content" value={{ color: 'rgb(0, 0, 0)' }}>
         
             <div  className="BarBtn">
             <ArrowForwardIosIcon fontSize="" color = 'black'  onClick={showSidebar} />
@@ -46,9 +45,11 @@ function Sidebar() {
 export default Sidebar;
 
 const SidebarWrapper = styled.div`
-z-index : 9999;
+
 .sidebar {
+ 
     background-color: #060b26;
+    
     height: 80px;
     display: flex;
     justify-content: start;
@@ -67,7 +68,9 @@ z-index : 9999;
 }
 
 .sidebar-menu {
-    margin-top : 22px;
+  overflow-y : scroll;
+    top: 148px;
+    
     background-color: #d4d4d4;
     width: 250px;
     height: 100vh;
@@ -76,14 +79,16 @@ z-index : 9999;
     position: fixed;
     left: -100%;
     transition: 850ms;
+    @media only screen and (max-device-width: 480px){
+      top: 127px;
+
+  }
 }
 
 .sidebar-menu.active {
     left: 0;
     transition: 350ms;
 }
-
-
 
 .sidebar-menu-items {
     width: 100%;

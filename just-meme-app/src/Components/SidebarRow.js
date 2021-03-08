@@ -20,7 +20,6 @@ display : flex;
 padding : 10px ;
 align-items : center;
 cursor : pointer;
-
 h4{
     margin-left : 10px;
     font-weight: 600;
