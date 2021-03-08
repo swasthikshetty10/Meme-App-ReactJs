@@ -1,22 +1,23 @@
-import React  from 'react'
+import React from 'react'
 import { Avatar } from '@material-ui/core'
 import styled from 'styled-components'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
+import { useState } from 'react'
 function PostCard({profilePic , image , username , timestamp , message ,liked, likes}) {
     
 
-    function Liked (liked_) {
-        const isLiked = liked_
-        if(liked_){
+    const Liked = props =>{
+        let { isLiked } = props;
+        if(isLiked){
             return(
                 <div className="LikeCmtIcon red">
-                    <FavoriteIcon/>
+                    <FavoriteIcon  />
                     </div>
             )
             }
-        else if (!liked_){
+        else if (!isLiked){
             return(
                 <div className="LikeCmtIcon">
                     <FavoriteBorderIcon/>
@@ -29,9 +30,7 @@ function PostCard({profilePic , image , username , timestamp , message ,liked, l
                 <FavoriteBorderIcon/>
                 </div>
         )
-    
-    }
-    
+      }
     return (
         <Card>
         <Top>
@@ -50,9 +49,7 @@ function PostCard({profilePic , image , username , timestamp , message ,liked, l
 
         <Bottom>
             <div className= "LikeCmt ">
-            <div className="LikeCmtIcon">
-                <FavoriteBorderIcon/>
-                </div>
+                <Liked  isLiked={liked}/>
                 <div className="LikeCmtIcon">
                 <QuestionAnswerRoundedIcon/>
                 </div>
@@ -123,19 +120,20 @@ border-top: solid rgb(222, 224, 224 , 0.75);
     .LikeCmtIcon{
         color : rgb(56, 56, 56);
         margin-right : 15px;
-        .red >  .MuiSvgIcon-root{
-            color : rgb(252, 53, 53 );
         
-        }
-        
-        .red{
-        color : rgb(252, 53, 53 );
-        }
     }
     .LikeCmtIcon:hover{
         color : rgb(222, 224, 224 , 0.75);
+        cursor : pointer;
+    }
+    .red >  .MuiSvgIcon-root{
+        color : rgb(252, 53, 53 );
+    
     }
     
+    .red{
+    color : rgb(252, 53, 53 );
+    }
  }
 
 `
