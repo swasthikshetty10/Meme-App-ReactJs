@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import {useState} from 'react';
-
+import { useStateValue } from '../Contexts/StateProvider'
 
 function PostFeed() {
     const handleSubmit = (e) => {
@@ -14,6 +14,7 @@ function PostFeed() {
     }
     const [input , setInput] = useState("");
     const [url , setUrl] = useState("");
+    const [{user} , dispatch] = useStateValue();
 
     //db
     // setInput("");
@@ -23,7 +24,7 @@ function PostFeed() {
             <form>
             <Top>
                 
-                <Avatar ClassNames="Avatar" src="" />
+                <Avatar ClassNames="Avatar" src={user.photoURL} />
 
                 <input 
                 value = {input}

@@ -8,8 +8,10 @@ import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import { Avatar , IconButton } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Sidebar from './Sidebar.js'
+import { useStateValue } from '../Contexts/StateProvider'
 
 function Header() {
+    const [{user} , dispatch] = useStateValue();
     
     return (
         <NavHead>
@@ -57,8 +59,8 @@ function Header() {
                 <div className = 'header_option'>
                 {/* <SupervisedUserCircleIcon fontSize="large"/> */}
                 {/* <HeaderInfo> */}
-                    <Avatar src="" className="Avatar"/>
-                {/* <h4>Swasthik</h4> */}
+                    <Avatar src={user.photoURL} className="Avatar"/>
+                {/* <h4>{user.displyName}</h4> */}
                 {/* </HeaderInfo> */}
                 </div>
                 
