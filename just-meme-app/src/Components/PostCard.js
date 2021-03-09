@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import { useState , useEffect } from 'react'
-function PostCard({profilePic , image , username , timestamp , message ,liked, likes}) {
+function PostCard({key , profilePic , image , username , timestamp , message ,liked, likes}) {
     
     const [_liked , setLiked] = useState(liked)
 
@@ -59,7 +59,7 @@ function PostCard({profilePic , image , username , timestamp , message ,liked, l
             <PostInfo>
                 
                 <h3>{username}</h3>
-                <p>{timestamp}</p>
+                <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
             </PostInfo>
         </Top>
 

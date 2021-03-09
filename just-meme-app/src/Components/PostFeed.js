@@ -5,20 +5,32 @@ import SendIcon from '@material-ui/icons/Send';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import {useState} from 'react';
 import { useStateValue } from '../Contexts/StateProvider'
-
+import  db from '../firebaseConfig' 
+import firebase from 'firebase'
 function PostFeed() {
-    const handleSubmit = (e) => {
-       e.preventDefault();
-       setInput("");
-       setUrl("");
-    }
+
+
+
+   
+
     const [input , setInput] = useState("");
     const [url , setUrl] = useState("");
     const [{user} , dispatch] = useStateValue();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        db.collection('posts').add({
+         profilePic : user.photoURL,
+         image : url,
+         username : user.displayName,
+         timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+         message : input,
+         liked : false,
+         likes : 0
+        })
+        setInput("");
+        setUrl("");
+     }
 
-    //db
-    // setInput("");
-    // setUrl("");
     return (
         <Feed>
             <form>
@@ -29,7 +41,7 @@ function PostFeed() {
                 <input 
                 value = {input}
                 onChange={(e)=> setInput(e.target.value)}
-                className="MsgSender" type="text" placeholder = "Ready for meme? Just post one"/>
+                className="MsgSender" type="text" placeholder = {`Ready for meme? ${ user.displayName}`}/>
                 <input 
                 value = {url}
                 onChange={(e)=> setUrl(e.target.value)}
