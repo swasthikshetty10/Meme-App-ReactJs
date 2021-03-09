@@ -2,8 +2,9 @@
 import './App.css';
 import Header from './Components/Header.js'
 
-import Login from './Components/SignUp.js'
+import Sign_Up from './Components/SignUp.js'
 import Feed from './Components/Feed.js'
+import Login from './Components/Login.js'
 import styled from 'styled-components'
 import { Container } from 'react-bootstrap'
 
@@ -30,16 +31,18 @@ function App() {
      <>
      <Container className = "d-flex align-items-center justify-content-center " style = {{ minHeight : "100vh"}}>
        <div className = "w-100" style = {{ maxWidth : "400px"}}>
-       <Login/></div>
+       <Sign_Up/></div>
      </Container>
     </>
 
     )
   }
+
+  const user = null;
   return (
     <>
     
-    {login ? <SignUp/> : <MainPage/>}
+    {!user ? <Login/> : <MainPage/>}
     </>
   );
 }
