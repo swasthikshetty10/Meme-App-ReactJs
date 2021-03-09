@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.actionTypes = exports.initialize = void 0;
+exports["default"] = exports.actionTypes = exports.initialState = void 0;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -11,10 +11,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var initialize = {
+var initialState = {
   user: null
 };
-exports.initialize = initialize;
+exports.initialState = initialState;
 var actionTypes = {
   SET_USER: "SET_USER"
 };
@@ -33,3 +33,6 @@ var reducer = function reducer(state, action) {
       return state;
   }
 };
+
+var _default = reducer;
+exports["default"] = _default;

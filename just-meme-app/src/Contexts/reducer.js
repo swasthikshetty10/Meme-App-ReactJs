@@ -1,4 +1,4 @@
-export const initialize = {
+export const initialState = {
     user: null,
 }
 export const actionTypes = {
@@ -17,4 +17,6 @@ const reducer = (state , action) => {
                 return state;
         }
     
-}
+};
+
+export default reducer;

@@ -7,9 +7,8 @@ import Feed from './Components/Feed.js'
 import Login from './Components/Login.js'
 import styled from 'styled-components'
 import { Container } from 'react-bootstrap'
-
+import { useStateValue } from './Contexts/StateProvider'
 function App() {
-  const login = false;
   const MainPage = () => {
     return(
      <>
@@ -38,7 +37,7 @@ function App() {
     )
   }
 
-  const user = null;
+  const [{user} , dispatch]   = useStateValue();
   return (
     <>
     
