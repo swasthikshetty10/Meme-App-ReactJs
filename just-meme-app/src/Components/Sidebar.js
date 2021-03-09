@@ -80,9 +80,13 @@ const SidebarWrapper = styled.div`
     left: -100%;
     transition: 850ms;
     @media only screen and (max-device-width: 480px){
-      top: 127px;
+      top: 120px;
 
   }
+  @media only screen and (min-device-width: 826px){
+   
+    top: 78px;
+}
 }
 
 .sidebar-menu.active {

@@ -10,6 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Sidebar from './Sidebar.js'
 
 function Header() {
+    
     return (
         <NavHead>
         <NavWrapper>
@@ -29,10 +30,7 @@ function Header() {
             </HeaderLeft>
             
             <HeaderRight>
-                <HeaderInfo>
-                    <Avatar src="" className="Avatar"/>
-                    <h4>Swasthik</h4>
-                </HeaderInfo>
+              
                 <IconButton>
                     <ExpandMoreIcon className="ExapandIcon"/>
                 </IconButton>
@@ -41,9 +39,9 @@ function Header() {
         </NavWrapper>
         <Wrapper>
 
-            
-
-            <HeaderCenter>
+        <div className = "MobSticky">
+            <HeaderCenter >
+                
             <div className="header_option" id="sidebar" > 
                 <Sidebar/>
             </div>
@@ -57,10 +55,16 @@ function Header() {
                 <ChatBubbleIcon  fontSize="large"/>
                 </div>
                 <div className = 'header_option'>
-                <SupervisedUserCircleIcon fontSize="large"/>
+                {/* <SupervisedUserCircleIcon fontSize="large"/> */}
+                {/* <HeaderInfo> */}
+                    <Avatar src="" className="Avatar"/>
+                {/* <h4>Swasthik</h4> */}
+                {/* </HeaderInfo> */}
                 </div>
                 
             </HeaderCenter>
+        </div>
+
         </Wrapper>
         </NavHead>
 
@@ -74,14 +78,41 @@ const NavHead = styled.div`
 position: -webkit-sticky; /* Safari */
 position: sticky;
 top: 0;
+display : flex;
+width : 100%;
+flex-direction : column;
     z-index: 1000;
+    @media only screen and (max-device-width: 480px){
+        
+        position: sticky;
+
+    }
+    @media only screen and (min-device-width: 826px){
+        flex-direction : row;
+        justify-content : space-evenly;
+        width : 100%;
+       
+    }
 `
 const Wrapper = styled.div`
     background-color : white;  
     padding : 15px 20px;
     box-shadow: 0px 5px 8px -9px rgba(0,0,0,0.75);
-    
-    
+    @media only screen and (max-device-width: 480px){
+        position: -webkit-sticky; /* Safari */
+        position: sticky;
+        top: 0;
+        .MobSticky {
+            
+        }
+
+    }
+    @media only screen and (min-device-width: 826px){
+        flex-direction : row;
+        justify-content : space-evenly;
+        width : 100%;
+        
+    }
 
 `
 
@@ -98,7 +129,7 @@ const NavWrapper = styled.div`
     
     @media only screen and (max-device-width: 480px){
          
-        height : 15%;
+        height : 30px;
 
     }
     
@@ -138,7 +169,7 @@ const Input = styled.div`
     input {
         background-color: transparent;
         width : 100%;
-        min-width : 30px;
+        min-width : 100px;
         outline-width: 0;
         border: none;
         resize: vertical;
@@ -148,13 +179,14 @@ const Input = styled.div`
         input {
             background-color: transparent;
             width : 100%;
+            
             outline-width: 0;
             border: none;
             resize: vertical;
         
         }
-        max-height 35px;
-
+        height 20px;
+        margin-top : -3px;
     }
 `
 const HeaderCenter = styled.div`
@@ -193,10 +225,13 @@ const HeaderCenter = styled.div`
         border-radius: 20px;
       }
       @media only screen and (max-device-width: 480px){
+        margin-top: 0px;
+        max-height 30px;
+        width : auto;
+    
          
         
-        max-height 30px;
-
+        
     }
     
 `
@@ -213,7 +248,6 @@ const HeaderRight = styled.div`
     }
 `
 const HeaderInfo = styled.div`
-    display : flex;
     align-items : center;
     h4{
         margin-left : 2px;
