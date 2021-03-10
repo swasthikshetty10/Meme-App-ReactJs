@@ -5,6 +5,8 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import { useState , useEffect } from 'react'
+// import { useStateValue } from '../Contexts/StateProvider'
+import  db from '../firebaseConfig' 
 function PostCard({key , profilePic , image , username , timestamp , message ,liked, likes}) {
     
     const [_liked , setLiked] = useState(liked)
@@ -27,6 +29,19 @@ function PostCard({key , profilePic , image , username , timestamp , message ,li
         
         
     }
+    useEffect(()=>{
+        if(_liked){
+            db.collection('posts').add({
+                likes : likes + 1
+                
+               })
+        }
+        else if(!_liked){
+            db.collection('posts').add({
+                likes : likes -1
+               })
+        }
+    },[_liked])
 
     const Liked = props =>{
         let { isLiked } = props;
