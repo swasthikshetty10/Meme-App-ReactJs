@@ -36,17 +36,26 @@ function SendPost() {
         <Feed>
             <form>
             <Top>
-                
+                <div ClassName = "Userdata" style = {{ display : "flex", padding: "10px"  }}>
                 <Avatar ClassNames="Avatar" src={user.photoURL} />
+                <h2>{user.displayName}</h2>
+                </div>
 
+                <div style = {{  padding: "10px"  }}>
                 <input 
-                value = {input}
                 onChange={(e)=> setInput(e.target.value)}
                 className="MsgSender" type="text" placeholder = {`Ready for meme? ${ user.displayName}`}/>
+                </div>
+
+
+                <div style = {{ marginInline : "10px" }}>
                 <input 
                 value = {url}
                 onChange={(e)=> setUrl(e.target.value)}
                 ClassName = "UrlSender"type="text" placeholder = "Image Url"/>
+                </div>
+
+
                 <button  className="HiddenBtn" onClick={handleSubmit} type = "submit">
                     Hidden btn
                 </button>
@@ -91,23 +100,22 @@ display : flex;
 border-bottom: 1px solid rgb(250, 250, 250);
 padding : 15px;
 padding-bottom : 0px;
+flex-direction : column;
 
   .Avatar{
     z-index: -1;
   }
     .MsgSender{
-        width : 250%;
+       
     }
     .UrlSender{
         
     }
     input {
-        flex : auto;
+        
         align-items: center;
-    margin-left : 10px;
-    max-height 40px;
-    padding : 5px 20px;
-    
+        height : 40px;
+        
     border-radius : 999px;
     background-color: rgb(233, 233, 233);
         width : 100%;
