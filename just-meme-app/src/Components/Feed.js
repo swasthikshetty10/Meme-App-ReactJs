@@ -45,12 +45,5 @@ export default Feed
 const FeedWrapper = styled.div`
 
 
-width : 80%;
-max-width: 600px;
-margin: 0 auto;
-margin-top : 15px;
-@media only screen and (max-device-width: 600px){
-        
-    width : 90%;
-}
+
 `

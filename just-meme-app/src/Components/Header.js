@@ -9,10 +9,18 @@ import { Avatar , IconButton } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Sidebar from './Sidebar.js'
 import { useStateValue } from '../Contexts/StateProvider'
+import { Link } from "react-router-dom";
+import {useState , useEffect} from 'react';
 
 function Header() {
     const [{user} , dispatch] = useStateValue();
-    
+    const [page ,setPage] = useState(window.location.pathname)
+    useEffect(( )=> {
+        console.log(page)
+        setPage(window.location.pathname)
+        console.log(page)
+
+    }, [window.location.pathname])
     return (
         <NavHead>
         <NavWrapper>
@@ -47,15 +55,26 @@ function Header() {
             <div className="header_option" id="sidebar" > 
                 <Sidebar/>
             </div>
-                <div className = 'header_option' id = "homeicon">
+            <Link to = "/">
+
+                <div className = 'header_option' onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)} id = {page==="/" && "pageactive" }>
                 <HomeIcon fontSize="large"/>
                 </div>
-                <div className = 'header_option'>
+            </Link>
+            
+            <Link to = "/sendposts">
+                <div className = 'header_option' onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)}  id = {page==="/sendposts" && "pageactive" }>
                 <AddCircleOutlineIcon  fontSize="large"/>
                 </div>
-                <div className = 'header_option'>
+            </Link>
+
+            <Link to = "/chat">
+                <div className = 'header_option'  onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)}   id = {page==="/chat" && "pageactive" }>
                 <ChatBubbleIcon  fontSize="large"/>
                 </div>
+            </Link>
+
+            <Link to= "/user">
                 <div className = 'header_option'>
                 {/* <SupervisedUserCircleIcon fontSize="large"/> */}
                 {/* <HeaderInfo> */}
@@ -63,7 +82,9 @@ function Header() {
                 {/* <h4>{user.displyName}</h4> */}
                 {/* </HeaderInfo> */}
                 </div>
-                
+            </Link>   
+
+
             </HeaderCenter>
         </div>
 
@@ -197,11 +218,11 @@ const HeaderCenter = styled.div`
     
     align-items : left;
     justify-content : center;
-    #homeicon >  .MuiSvgIcon-root{
+    #pageactive >  .MuiSvgIcon-root{
         color: rgb(129, 89, 240);  
 
     }
-    #homeicon{
+    #pageactive{
         border-bottom : 4px solid rgb(129, 89, 240); 
     }
     .header_option homeicon > .MuiSvgIcon-root {
