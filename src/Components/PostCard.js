@@ -30,16 +30,18 @@ function PostCard({id , profilePic , image , username , timestamp , message ,lik
         
     }
     useEffect(()=>{
-        if(_liked){
-            db.collection('posts').add({
-                likes : likes + 1
+        if(_liked === true){
+            db.collection('posts').doc(id).update({
+                likes : likes+1,
+                liked : true
                 
                })
                console.log(id);
         }
-        else if(!_liked){
-            db.collection('posts' ).add({
-                likes : likes -1
+        else if(!_liked === false){
+            db.collection('posts').doc(id).update({
+                likes : likes-1,
+                liked : true
                })
         }
     },[_liked])
