@@ -7,7 +7,7 @@ import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded'
 import { useState , useEffect } from 'react'
 // import { useStateValue } from '../Contexts/StateProvider'
 import  db from '../firebaseConfig' 
-function PostCard({key , profilePic , image , username , timestamp , message ,liked, likes}) {
+function PostCard({id , profilePic , image , username , timestamp , message ,liked, likes}) {
     
     const [_liked , setLiked] = useState(liked)
 
@@ -31,12 +31,16 @@ function PostCard({key , profilePic , image , username , timestamp , message ,li
     }
     useEffect(()=>{
         if(_liked){
-           //
-           //
-           console.log(key)
+            db.collection('posts').add({
+                likes : likes + 1
+                
+               })
+               console.log(id);
         }
         else if(!_liked){
-            //
+            db.collection('posts' ).add({
+                likes : likes -1
+               })
         }
     },[_liked])
 
@@ -105,7 +109,6 @@ function PostCard({key , profilePic , image , username , timestamp , message ,li
 
 export default PostCard
 const Card = styled.div`
-
 margin: 0 auto;
 margin-top : 15px;
 flex-direction: column;
@@ -114,7 +117,6 @@ border-radius: 15px;
 z-index : -2;
 box-shadow: 0px 5px 7px -7px rgb(0, 0, 0, 0.75);
 width : 100%;
-
 `
 
 const Top = styled.div`
@@ -139,7 +141,6 @@ p{
 }
 `
 const Bottom = styled.div`
-
 display : flex;
 flex-direction : column; 
 padding : 10px;
@@ -168,7 +169,6 @@ border-top: solid rgb(222, 224, 224 , 0.75);
     color : rgb(252, 53, 53 );
     }
  }
-
 `
 
 const Image = styled.div`
@@ -178,7 +178,6 @@ p{
     padding : 10px;
 }
 img {
-
     width: 100%;
     height: auto;
     object-fit: cover;

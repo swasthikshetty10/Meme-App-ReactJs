@@ -12,7 +12,6 @@ function Feed() {
         db.collection('posts').orderBy('timestamp' , 'desc').onSnapshot(snapshot => (
             SetPost(snapshot.docs.map(doc => ({id : doc.id ,data :  doc.data()})))
         ))
-        
     }, [])
 
     return (
@@ -25,7 +24,7 @@ function Feed() {
                   {/* Message Sender */}
                   {posts.map((post)=>(
                      <Post 
-                     key= {post.data.id}
+                     id= {post.id}
                      profilePic = {post.data.profilePic} 
                      image = {post.data.image}
                      username = {post.data.username}
