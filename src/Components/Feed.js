@@ -25,7 +25,7 @@ function Feed() {
                   {/* Message Sender */}
                   {posts.map((post)=>(
                      <Post 
-                     key= {post.id}
+                     key= {post.data.id}
                      profilePic = {post.data.profilePic} 
                      image = {post.data.image}
                      username = {post.data.username}

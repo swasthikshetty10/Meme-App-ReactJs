@@ -31,15 +31,12 @@ function PostCard({key , profilePic , image , username , timestamp , message ,li
     }
     useEffect(()=>{
         if(_liked){
-            db.collection('posts').add({
-                likes : likes + 1
-                
-               })
+           //
+           //
+           console.log(key)
         }
         else if(!_liked){
-            db.collection('posts').add({
-                likes : likes -1
-               })
+            //
         }
     },[_liked])
 
