@@ -7,44 +7,37 @@ import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded'
 import { useState , useEffect } from 'react'
 // import { useStateValue } from '../Contexts/StateProvider'
 import  db from '../firebaseConfig' 
+import { useStateValue } from '../Contexts/StateProvider'
 function PostCard({id , profilePic , image , username , timestamp , message ,liked, likes}) {
     
-    const [_liked , setLiked] = useState(liked)
-
-    const [_likes , setLikes] = useState(likes)
-    const addlike = ()  =>{
-        // console.log(liked);
-        // console.log(_likes)
-        if(_liked){
-            
-            setLikes(_likes -1);
-            
+    const [{user} , dispatch] = useStateValue();
+    function removeItemOnce(arr, value) {
+        var index = arr.indexOf(value);
+        if (index > -1) {
+          arr.splice(index, 1);
         }
-        if(!_liked){
-            
-            setLikes(_likes +1);
-            
-        }
-        setLiked(!_liked);
-        
-        
-    }
-    useEffect(()=>{
-        if(_liked === true){
+        return arr;
+      }
+    const addlike = ()=>{
+        if(!liked.includes(`${user.uid}`)){
+            liked.push(`${user.uid}`)
+            console.log(liked)
             db.collection('posts').doc(id).update({
-                likes : likes+1,
-                liked : true
+                likes : likes += 1,
+                liked : liked,
                 
                })
                console.log(id);
         }
-        else if(!_liked === false){
+        else if(liked.includes(`${user.uid}`)){
+            liked.push(id)
             db.collection('posts').doc(id).update({
-                likes : likes-1,
-                liked : true
+                likes : likes -= 1,
+                liked : removeItemOnce( liked ,  user.uid )
+                
                })
         }
-    },[_liked])
+    }
 
     const Liked = props =>{
         let { isLiked } = props;
@@ -88,14 +81,14 @@ function PostCard({id , profilePic , image , username , timestamp , message ,lik
 
         <Bottom>
             <div className= "LikeCmt ">
-                <Liked  isLiked={_liked}/>
+                <Liked  isLiked={liked.includes(`${user.uid}`)}/>
                 <div className="LikeCmtIcon">
                 <QuestionAnswerRoundedIcon/>
                 </div>
                 
             </div>
             <div className="Title">
-            <h4>{ _likes } Likes</h4>
+            <h4>{ likes } Likes</h4>
             
             </div>
             

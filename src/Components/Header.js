@@ -69,7 +69,7 @@ function Header() {
             </Link>
 
             <Link to = "/chats">
-                <div className = 'header_option'  onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)}   id = {page==="/chat" && "pageactive" }>
+                <div className = 'header_option'  onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)}   id = {page==="/chats" && "pageactive" }>
                 <ChatBubbleIcon  fontSize="large"/>
                 </div>
             </Link>

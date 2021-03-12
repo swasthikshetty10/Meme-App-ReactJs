@@ -24,7 +24,7 @@ function PostFeed() {
          username : user.displayName,
          timestamp : firebase.firestore.FieldValue.serverTimestamp(),
          message : input,
-         liked : false,
+         liked : [""],
          likes : 0
         })
         setInput("");
