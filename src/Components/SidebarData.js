@@ -17,13 +17,13 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Products',
+    title: 'GitHub',
     path: '/products',
     icon: <FaIcons.FaCartPlus />,
     cName: 'nav-text'
   },
   {
-    title: 'Team',
+    title: 'Insta',
     path: '/team',
     icon: <IoIcons.IoMdPeople />,
     cName: 'nav-text'
