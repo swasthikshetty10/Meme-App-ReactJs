@@ -4,18 +4,38 @@ import { Avatar } from '@material-ui/core'
 import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import {useState} from 'react';
+import {useState , useRef } from 'react';
 import { useStateValue } from '../Contexts/StateProvider'
 import  db from '../firebaseConfig' 
 import firebase from 'firebase'
+import { Done } from '@material-ui/icons';
 function SendPost() {
-
-
-
-   
-
+    const openFile = useRef(null)
+    const onButtonClick = () => {
+        // `current` points to the mounted file input element
+       openFile.current.click();
+      };
+      const randmeme = () =>{
+        fetch("https://epaxai.azurewebsites.net/getmeme/")
+        .then(response => response.json())
+        .then(
+          data => 
+          console.log(data)
+        //   db.collection('posts').add({
+        //     profilePic : user.photoURL,
+        //     image : "https://www.tenouk.com/Module10_files/preprocessordirective014.png",
+        //     username : "ProgrammerBot",
+        //     timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+        //     message : data.title,
+        //     liked : false,
+        //     likes : 0,
+        //    })
+        )
+    
+      }
     const [input , setInput] = useState("");
     const [url , setUrl] = useState("");
+    const [img , setImg] = useState("");
     const [{user} , dispatch] = useStateValue();
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,8 +46,9 @@ function SendPost() {
          timestamp : firebase.firestore.FieldValue.serverTimestamp(),
          message : input,
          liked : false,
-         likes : 0
+         likes : 0,
         })
+        console.log(Done)
         setInput("");
         setUrl("");
      }
@@ -63,9 +84,10 @@ function SendPost() {
             </Top>
            
             <Bottom>
-                <div>
+                <input type='file' value ={img} id='file' ref={openFile} style={{display: 'none'}}/>
+                <div onClick = {onButtonClick}>
                 <PhotoLibraryIcon style={{ color : "red"}}/>
-                <h3>Photo</h3>
+                Photo
                 </div>
                 <div>
                 <button className= "btn" onClick={handleSubmit} type = "submit">
@@ -74,6 +96,7 @@ function SendPost() {
                 </div>
             </Bottom>
             </form>
+            <button onClick = {randmeme}>FFF</button>
         </Feed>
     )
 }

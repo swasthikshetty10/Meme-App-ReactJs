@@ -12,11 +12,31 @@ import styled from 'styled-components'
 import { Container } from 'react-bootstrap'
 import { useStateValue } from './Contexts/StateProvider'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import  db from './firebaseConfig' 
+import firebase from 'firebase'
 
 
 function App() {
   const MainPage = () => {
+    const randmeme = () =>{
+      fetch("https://epaxai.azurewebsites.net/getmeme/")
+      .then(response => response.json())
+      .then(
+        data => 
+        db.collection('posts').add({
+          profilePic : user.photoURL,
+          image : "https://www.tenouk.com/Module10_files/preprocessordirective014.png",
+          username : "ProgrammerBot",
+          timestamp : firebase.firestore.FieldValue.serverTimestamp(),
+          message : data.title,
+          liked : false,
+          likes : 0,
+         })
+      )
+  
+    }
+    
+
     return(
      <Router>
 
