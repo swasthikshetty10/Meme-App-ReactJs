@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 function Trending() {
     return (
-       
+
         <StoryReel>
             {/* Story */}
             {/* Story */}
