@@ -5,17 +5,17 @@ import HomeIcon from '@material-ui/icons/Home';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
-import { Avatar , IconButton } from '@material-ui/core'
+import { Avatar, IconButton } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Sidebar from './Sidebar.js'
 import { useStateValue } from '../Contexts/StateProvider'
 import { Link } from "react-router-dom";
-import {useState , useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 function Header() {
-    const [{user} , dispatch] = useStateValue();
-    const [page ,setPage] = useState(window.location.pathname)
-    useEffect(( )=> {
+    const [{ user }, dispatch] = useStateValue();
+    const [page, setPage] = useState(window.location.pathname)
+    useEffect(() => {
         console.log(page)
         setPage(window.location.pathname)
         console.log(page)
@@ -23,72 +23,67 @@ function Header() {
     }, [window.location.pathname])
     return (
         <NavHead>
-        <NavWrapper>
-            <HeaderLeft>
-            
-                <div className="logo">
-                    <img src = "https://i.ebayimg.com/images/g/dBMAAMXQaOVRjRim/s-l300.jpg"></img>
+            <NavWrapper className='items-center'>
+                <div className="flex m-2  items-center" >
+
+                    <div className=" mx-3">
+                        <img className="h-10" src="https://swasthikshetty10.github.io/logo.png" />
+                    </div>
+
+                    <div className="flex   items-center 1 bg-gray-300 rounded">
+                        <SearchIcon className="ml-3" />
+                        <input className="p-2 bg-t bg-transparent" type="text" placeholder="Search memes" />
+                    </div>
+
+
+
                 </div>
-               
-                <Input>
-                <SearchIcon/>
-                <input className="Input" type = "text" placeholder="Search memes"/>
-                </Input>
-    
 
 
-            </HeaderLeft>
-            
-            <HeaderRight>
-              
-                <IconButton>
-                    <ExpandMoreIcon className="ExapandIcon"/>
-                </IconButton>
-            </HeaderRight>
-            
-        </NavWrapper>
-        <Wrapper>
 
-        <div className = "MobSticky">
-            <HeaderCenter >
-                
-            <div className="header_option" id="sidebar" > 
-                <Sidebar/>
-            </div>
-            <Link to = "/">
+            </NavWrapper>
+            <Wrapper>
 
-                <div className = 'header_option' onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)} id = {page==="/" && "pageactive" }>
-                <HomeIcon fontSize="large"/>
+                <div className="MobSticky">
+                    <HeaderCenter >
+
+                        <div className="header_option" id="sidebar" >
+                            <Sidebar />
+                        </div>
+                        <Link to="/">
+
+                            <div className='header_option' onClick={() => setTimeout(function () { setPage(window.location.pathname) }, 1)} id={page === "/" && "pageactive"}>
+                                <HomeIcon fontSize="large" />
+                            </div>
+                        </Link>
+
+                        <Link to="/sendposts">
+                            <div className='header_option' onClick={() => setTimeout(function () { setPage(window.location.pathname) }, 1)} id={page === "/sendposts" && "pageactive"}>
+                                <AddCircleOutlineIcon fontSize="large" />
+                            </div>
+                        </Link>
+
+                        <Link to="/chats">
+                            <div className='header_option' onClick={() => setTimeout(function () { setPage(window.location.pathname) }, 1)} id={page === "/chats" && "pageactive"}>
+                                <ChatBubbleIcon fontSize="large" />
+                            </div>
+                        </Link>
+
+                        <Link to="/user">
+                            <div className='header_option'>
+                                {/* <SupervisedUserCircleIcon fontSize="large"/> */}
+                                {/* <HeaderInfo> */}
+                                <Avatar src={user.photoURL} className="Avatar" />
+                                {/* <h4>{user.displyName}</h4> */}
+                                {/* </HeaderInfo> */}
+                            </div>
+                        </Link>
+
+
+                    </HeaderCenter>
                 </div>
-            </Link>
-            
-            <Link to = "/sendposts">
-                <div className = 'header_option' onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)}  id = {page==="/sendposts" && "pageactive" }>
-                <AddCircleOutlineIcon  fontSize="large"/>
-                </div>
-            </Link>
 
-            <Link to = "/chats">
-                <div className = 'header_option'  onClick ={() =>setTimeout(function() {setPage(window.location.pathname)}, 1)}   id = {page==="/chats" && "pageactive" }>
-                <ChatBubbleIcon  fontSize="large"/>
-                </div>
-            </Link>
-
-            <Link to= "/user">
-                <div className = 'header_option'>
-                {/* <SupervisedUserCircleIcon fontSize="large"/> */}
-                {/* <HeaderInfo> */}
-                    <Avatar src={user.photoURL} className="Avatar"/>
-                {/* <h4>{user.displyName}</h4> */}
-                {/* </HeaderInfo> */}
-                </div>
-            </Link>   
-
-
-            </HeaderCenter>
-        </div>
-
-        </Wrapper>
+            </Wrapper>
         </NavHead>
 
     )
@@ -142,7 +137,7 @@ const Wrapper = styled.div`
 const NavWrapper = styled.div`
 
     display : flex;
-    padding : 15px 20px;
+    
     justify-content : space-between;
     
     background-color : white;
@@ -152,7 +147,7 @@ const NavWrapper = styled.div`
     
     @media only screen and (max-device-width: 480px){
          
-        height : 30px;
+        height : 55px;
 
     }
     
@@ -171,47 +166,16 @@ const HeaderLeft = styled.div`
       @media only screen and (max-device-width: 480px){
          
         img {
-            max-height: 35px;
+            max-height: 40px;
             color: rgb(129, 89, 240);
            
           }
-        max-height 35px;
+        height: 50px;
         max-width: 200px;
 
     }
 `
 
-const Input = styled.div`
-    display: flex;
-    align-items: center;
-    margin-left : 10px;
-    max-height 40px;
-    padding : 10px;
-    background-color: rgb(233, 233, 233);
-    border-radius : 999px;
-    input {
-        background-color: transparent;
-        width : 100%;
-        min-width : 100px;
-        outline-width: 0;
-        border: none;
-        resize: vertical;
-    }
-    @media only screen and (max-device-width: 480px){
-         
-        input {
-            background-color: transparent;
-            width : 100%;
-            
-            outline-width: 0;
-            border: none;
-            resize: vertical;
-        
-        }
-        height 20px;
-        margin-top : -3px;
-    }
-`
 const HeaderCenter = styled.div`
     margin-top : 2px;
     display : flex;
@@ -258,18 +222,7 @@ const HeaderCenter = styled.div`
     }
     
 `
-const HeaderRight = styled.div`
-    display : flex;
-    align-items : center;
-    @media only screen and (max-device-width: 480px){
-        
-        max-height 35px;
-        > .MuiSvgIcon-root {
-            color: rgb(129, 89, 240);  
-        }
 
-    }
-`
 const HeaderInfo = styled.div`
     align-items : center;
     h4{
@@ -278,8 +231,8 @@ const HeaderInfo = styled.div`
     
     @media only screen and (max-device-width: 480px){
         
-        max-height 30px;
-        max-width 80px;
+        max-height : 30px;
+        max-width : 80px;
         .MuiSvgIcon-root {
             size : 20px;
         }

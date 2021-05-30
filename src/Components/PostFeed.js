@@ -3,66 +3,69 @@ import { Avatar } from '@material-ui/core'
 import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import {useState} from 'react';
+import { useState } from 'react';
 import { useStateValue } from '../Contexts/StateProvider'
-import  db from '../firebaseConfig' 
+import db from '../firebaseConfig'
 import firebase from 'firebase'
 function PostFeed() {
 
 
 
-   
 
-    const [input , setInput] = useState("");
-    const [url , setUrl] = useState("");
-    const [{user} , dispatch] = useStateValue();
+
+    const [input, setInput] = useState("");
+    const [url, setUrl] = useState("");
+    const [{ user }, dispatch] = useStateValue();
     const handleSubmit = (e) => {
         e.preventDefault();
-        db.collection('posts').add({
-         profilePic : user.photoURL,
-         image : url,
-         username : user.displayName,
-         timestamp : firebase.firestore.FieldValue.serverTimestamp(),
-         message : input,
-         liked : [""],
-         likes : 0
-        })
+        if (url) {
+            db.collection('posts').add({
+                profilePic: user.photoURL,
+                image: url,
+                username: user.displayName,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                message: input,
+                liked: [""],
+                likes: 0
+            })
+        }
+
         setInput("");
         setUrl("");
-     }
+    }
 
     return (
         <Feed>
             <form>
-            <Top>
-                
-                <Avatar ClassNames="Avatar" src={user.photoURL} />
+                <Top>
 
-                <input 
-                value = {input}
-                onChange={(e)=> setInput(e.target.value)}
-                className="MsgSender" type="text" placeholder = {`Ready for meme? ${ user.displayName}`}/>
-                <input 
-                value = {url}
-                onChange={(e)=> setUrl(e.target.value)}
-                ClassName = "UrlSender"type="text" placeholder = "Image Url"/>
-                <button  className="HiddenBtn" onClick={handleSubmit} type = "submit">
-                    Hidden btn
+                    <Avatar ClassNames="Avatar" src={user.photoURL} />
+
+                    <input
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        className="MsgSender" type="text" placeholder={`Ready for meme? ${user.displayName}`} />
+                    <input
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                        ClassName="UrlSender" type="text" placeholder="Image Url" />
+                    <button className="HiddenBtn" onClick={handleSubmit} type="submit">
+                        Hidden btn
                 </button>
-                
-            </Top>
-           
-            <Bottom>
-                <div>
-                <PhotoLibraryIcon style={{ color : "red"}}/>
-                <h3>Photo</h3>
-                </div>
-                <div>
-                <button className= "btn" onClick={handleSubmit} type = "submit">
-                <div>  <SendIcon/><h3>Submit</h3> </div>
-                </button>
-                </div>
-            </Bottom>
+
+                </Top>
+
+                <Bottom>
+                    <div>
+                        <PhotoLibraryIcon style={{ color: "red" }} />
+                        <h3>Photo</h3>
+                    </div>
+                    <div>
+                        <button className="btn" onClick={handleSubmit} type="submit">
+                            <div>  <SendIcon /><h3>Submit</h3> </div>
+                        </button>
+                    </div>
+                </Bottom>
             </form>
         </Feed>
     )
@@ -119,7 +122,7 @@ padding-bottom : 0px;
         display : none;
     }
 `
-const Bottom= styled.div`
+const Bottom = styled.div`
 display: flex;
 justify-content : space-evenly;
 padding: 20px;

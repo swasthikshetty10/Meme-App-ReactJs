@@ -2,14 +2,14 @@ import { Avatar } from '@material-ui/core'
 import styled from 'styled-components'
 import React from 'react'
 //  you can also unstruct the Channel liks { Name }
-function SidebarRow({ name , src }) { 
-    
+function SidebarRow({ name, src }) {
+
     return (
-         <Sidebarrow>
-             <Avatar src = {src} />
-             <h4>{name}</h4>
-         </Sidebarrow>
-         
+        <Sidebarrow>
+            <Avatar src={src} />
+            <h4>{name}</h4>
+        </Sidebarrow>
+
     )
 }
 

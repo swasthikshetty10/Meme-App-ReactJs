@@ -12,26 +12,26 @@ function Sidebar() {
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <SidebarWrapper> 
+    <SidebarWrapper>
       <IconContext.Provider className="Content" value={{ color: 'rgb(0, 0, 0)' }}>
-        
-            <div  className="BarBtn">
-            <ArrowForwardIosIcon fontSize="" color = 'black'  onClick={showSidebar} />
-            </div>
-       
+
+        <div className="BarBtn">
+          <ArrowForwardIosIcon fontSize="" color='black' onClick={showSidebar} />
+        </div>
+
         <div className={sidebar ? 'sidebar-menu active' : 'sidebar-menu'}>
           <div className='sidebar-menu-items' onClick={showSidebar}>
             <div className='toggleIcon'>
-             
-            <div className="CloseIcon"><CloseIcon/></div>
-            
+
+              <div className="CloseIcon"><CloseIcon /></div>
+
             </div>
             {SidebarData.map((item, index) => {
               return (
                 <div key={index} className={item.cName}>
-                  
-                  <SidebarRow name={item.title}/>
-                  
+
+                  <SidebarRow name={item.title} />
+
                 </div>
               );
             })}

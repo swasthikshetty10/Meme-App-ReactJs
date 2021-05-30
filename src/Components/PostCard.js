@@ -4,96 +4,96 @@ import styled from 'styled-components'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
-import { useState , useEffect } from 'react'
+import { useState, useEffect } from 'react'
 // import { useStateValue } from '../Contexts/StateProvider'
-import  db from '../firebaseConfig' 
+import db from '../firebaseConfig'
 import { useStateValue } from '../Contexts/StateProvider'
-function PostCard({id , profilePic , image , username , timestamp , message ,liked, likes}) {
-    
-    const [{user} , dispatch] = useStateValue();
+function PostCard({ id, profilePic, image, username, timestamp, message, liked, likes }) {
+
+    const [{ user }, dispatch] = useStateValue();
     function removeItemOnce(arr, value) {
         var index = arr.indexOf(value);
         if (index > -1) {
-          arr.splice(index);
+            arr.splice(index);
         }
         return arr;
-      }
-    const addlike = ()=>{
-        if(!liked.includes(`${user.uid}`)){
+    }
+    const addlike = () => {
+        if (!liked.includes(`${user.uid}`)) {
             liked.push(`${user.uid}`)
             console.log(liked)
             db.collection('posts').doc(id).update({
-                likes : likes += 1,
-                liked : liked,
-                
-               })
-               console.log(id);
+                likes: likes += 1,
+                liked: liked,
+
+            })
+            console.log(id);
         }
-        else if(liked.includes(`${user.uid}`)){
+        else if (liked.includes(`${user.uid}`)) {
             liked.push(id)
             db.collection('posts').doc(id).update({
-                likes : likes -= 1,
-                liked : removeItemOnce( liked ,  user.uid )
-                
-               })
+                likes: likes -= 1,
+                liked: removeItemOnce(liked, user.uid)
+
+            })
         }
     }
 
-    const Liked = props =>{
+    const Liked = props => {
         let { isLiked } = props;
 
-        if(isLiked){
-            return(
-                <div onClick = {addlike} className="LikeCmtIcon red">
-                    <FavoriteIcon  />
-                    </div>
+        if (isLiked) {
+            return (
+                <div onClick={addlike} className="LikeCmtIcon red">
+                    <FavoriteIcon />
+                </div>
             )
-            }
-        else if (!isLiked){
-            return(
-                <div onClick = {addlike} className="LikeCmtIcon">
-                    <FavoriteBorderIcon/>
-                    </div>
-            )
-        
         }
-        return(
-            <div onClick = {addlike} className="LikeCmtIcon">
-                <FavoriteBorderIcon/>
+        else if (!isLiked) {
+            return (
+                <div onClick={addlike} className="LikeCmtIcon">
+                    <FavoriteBorderIcon />
                 </div>
+            )
+
+        }
+        return (
+            <div onClick={addlike} className="LikeCmtIcon">
+                <FavoriteBorderIcon />
+            </div>
         )
-      }
+    }
     return (
-        <Card className = {timestamp}>
-        <Top>
-            <Avatar src={profilePic} className = "Avatar"/>
-            <PostInfo>
-                
-                <h3>{username}</h3>
-                <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
-            </PostInfo>
-        </Top>
+        <Card className={timestamp}>
+            <Top>
+                <Avatar src={profilePic} className="Avatar" />
+                <PostInfo>
 
-        <Image>
-        <p>{message}</p>
-        <img src={image} alt = ""/>
-        </Image>
+                    <h3>{username}</h3>
+                    <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
+                </PostInfo>
+            </Top>
 
-        <Bottom>
-            <div className= "LikeCmt ">
-                <Liked  isLiked={liked.includes(`${user.uid}`)}/>
-                <div className="LikeCmtIcon">
-                <QuestionAnswerRoundedIcon/>
+            <Image>
+                <p>{message}</p>
+                <img src={image} alt="" />
+            </Image>
+
+            <Bottom>
+                <div className="LikeCmt ">
+                    <Liked isLiked={liked.includes(`${user.uid}`)} />
+                    <div className="LikeCmtIcon">
+                        <QuestionAnswerRoundedIcon />
+                    </div>
+
                 </div>
-                
-            </div>
-            <div className="Title">
-            <h4>{ likes } Likes</h4>
-            
-            </div>
-            
+                <div className="Title">
+                    <h4>{likes} Likes</h4>
 
-        </Bottom>
+                </div>
+
+
+            </Bottom>
 
 
         </Card>

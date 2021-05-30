@@ -1,51 +1,51 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useStateValue } from '../Contexts/StateProvider'
-import { auth , provider } from '../firebaseConfig'
+import { auth, provider } from '../firebaseConfig'
 import { actionTypes } from "../Contexts/reducer"
 
 function Login() {
 
 
-    const [state , dispatch] = useStateValue();
+  const [state, dispatch] = useStateValue();
 
-    const signIn = () => {
-      auth.signInWithPopup(provider)
-        .then(
-            result=>{
+  const signIn = () => {
+    auth.signInWithPopup(provider)
+      .then(
+        result => {
 
-                 dispatch({
-                     type : actionTypes.SET_USER,
-                     user: result.user
-                 })
-                //console.log(result);
-            }
-        )
-        .catch((error) => 
-            alert(error.message)
-        );
-    };
-    return (
-      <LoginPage>
-          <LoginLogo>
-          <h1><span>"Just😂</span><span>Memes"</span></h1>
-          <button className = "LoginBtn"
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          onClick = {signIn}
-          >
-            <img
-              width="20px"
-              style={{ marginBottom: "-2px", marginRight: "10px" }}
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-            />
+          dispatch({
+            type: actionTypes.SET_USER,
+            user: result.user
+          })
+          //console.log(result);
+        }
+      )
+      .catch((error) =>
+        alert(error.message)
+      );
+  };
+  return (
+    <LoginPage>
+      <LoginLogo>
+        <h1><span>"Just😂</span><span>Memes"</span></h1>
+        <button className="LoginBtn"
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={signIn}
+        >
+          <img
+            width="20px"
+            style={{ marginBottom: "-2px", marginRight: "10px" }}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+          />
             Login with Google
           </button>
-          </LoginLogo>
-          
-      </LoginPage>
+      </LoginLogo>
+
+    </LoginPage>
   )
 }
 
