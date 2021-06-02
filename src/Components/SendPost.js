@@ -61,29 +61,28 @@ function SendPost() {
 
     return (
         <Feed>
-            <form>
+            <form className="p-4">
                 <Top>
-                    <div ClassName="Userdata" style={{ display: "flex", padding: "10px" }}>
-                        <Avatar ClassNames="Avatar" src={user.photoURL} />
+                    <div className="items-center flex gap-2"  >
+                        <div><Avatar ClassNames="Avatar" src={user.photoURL} /></div>
                         <h2>{user.displayName}</h2>
                     </div>
 
-                    <div style={{ padding: "10px" }}>
+                    <div className="my-4 w-full">
                         <input
                             onChange={(e) => setInput(e.target.value)}
-                            className="MsgSender" type="text" placeholder={`Ready for meme? ${user.displayName}`} />
+                            className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder={`Ready for meme? ${user.displayName}`} />
                     </div>
 
-
-                    <div style={{ marginInline: "10px" }}>
+                    <div className="">
                         <input
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
-                            ClassName="UrlSender" type="text" placeholder="Image Url" />
+                            className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder="Image Url" />
                     </div>
 
 
-                    <button className="HiddenBtn" onClick={handleSubmit} type="submit">
+                    <button className="HiddenBtn hidden" onClick={handleSubmit} type="submit">
                         Hidden btn
                 </button>
 
@@ -102,7 +101,6 @@ function SendPost() {
                     </div>
                 </Bottom>
             </form>
-            <button onClick={randmeme}>FFF</button>
         </Feed>
     )
 }
@@ -140,22 +138,7 @@ flex-direction : column;
     .UrlSender{
         
     }
-    input {
-        
-        align-items: center;
-        height : 40px;
-        
-    border-radius : 999px;
-    background-color: rgb(233, 233, 233);
-        width : 100%;
-        min-width : 2cm;
-        outline-width: 0;
-        border: none;
-        resize: vertical;
-    }
-    .HiddenBtn {
-        display : none;
-    }
+   
 `
 const Bottom = styled.div`
 display: flex;

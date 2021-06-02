@@ -26,13 +26,13 @@ function Header() {
             <NavWrapper className='items-center'>
                 <div className="flex m-2  items-center" >
 
-                    <div className=" mx-3">
-                        <img className="h-10" src="https://swasthikshetty10.github.io/logo.png" />
+                    <div className="ml-2 w-10">
+                        <img className="h-10 " src="https://swasthikshetty10.github.io/logo.png" />
                     </div>
 
-                    <div className="flex   items-center 1 bg-gray-300 rounded">
+                    <div className="flex  ml-2 items-center  bg-gray-300 rounded-md">
                         <SearchIcon className="ml-3" />
-                        <input className="p-2 bg-t bg-transparent" type="text" placeholder="Search memes" />
+                        <input className="p-2 bg-t bg-transparent outline-none" type="text" placeholder="Search memes" />
                     </div>
 
 
@@ -97,15 +97,12 @@ position: -webkit-sticky; /* Safari */
 position: sticky;
 top: 0;
 display : flex;
+
 width : 100%;
 flex-direction : column;
     z-index: 1000;
-    @media only screen and (max-device-width: 480px){
-        
-        position: sticky;
 
-    }
-    @media only screen and (min-device-width: 826px){
+    @media only screen and (min-device-width: 900px){
         flex-direction : row;
         justify-content : space-evenly;
         width : 100%;
@@ -123,7 +120,6 @@ const Wrapper = styled.div`
         .MobSticky {
             
         }
-
     }
     @media only screen and (min-device-width: 826px){
         flex-direction : row;
@@ -139,11 +135,12 @@ const NavWrapper = styled.div`
     display : flex;
     
     justify-content : space-between;
-    
+
     background-color : white;
     z-index : 100;
     top : 0;
     box-shadow: 0px 5px 8px -9px rgba(0,0,0,0.75);
+    
     
     @media only screen and (max-device-width: 480px){
          
