@@ -9,38 +9,52 @@ import { useStateValue } from '../Contexts/StateProvider'
 import db from '../firebaseConfig'
 import firebase from 'firebase'
 import { Done } from '@material-ui/icons';
+
 function SendPost() {
     const openFile = useRef(null)
     const onButtonClick = () => {
         // `current` points to the mounted file input element
         openFile.current.click();
     };
-    const randmeme = () => {
-        fetch("https://epaxai.azurewebsites.net/getmeme/")
-            .then(response => response.json())
-            .then(
-                data =>
-                    console.log(data)
-                //   db.collection('posts').add({
-                //     profilePic : user.photoURL,
-                //     image : "https://www.tenouk.com/Module10_files/preprocessordirective014.png",
-                //     username : "ProgrammerBot",
-                //     timestamp : firebase.firestore.FieldValue.serverTimestamp(),
-                //     message : data.title,
-                //     liked : false,
-                //     likes : 0,
-                //    })
-            )
 
-    }
     const [input, setInput] = useState("");
     const [url, setUrl] = useState("");
-    const [img, setImg] = useState("");
+    const [img, setImg] = useState({ file: "", imagePreviewUrl: "" });
     const [{ user }, dispatch] = useStateValue();
+    let reader = new FileReader();
+    const onImageSubmit = (e) => {
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        console.log(file)
+        reader.onloadend = () => {
+            setImg({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(file)
+    }
+    const onURLSubmit = (e) => {
+        let url = e.target.value;
+        setUrl(url)
+        setImg({
+            file: "",
+            imagePreviewUrl: url
+        });
+    }
+    const Image = ({ imagePreviewUrl }) => {
+
+        if (imagePreviewUrl) {
+            return (<img src={imagePreviewUrl} />);
+        } else {
+            return (<div className="previewText">Please select an Image for Preview</div>);
+        }
+    }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (url) {
-
 
             db.collection('posts').add({
                 profilePic: user.photoURL,
@@ -48,7 +62,7 @@ function SendPost() {
                 username: user.displayName,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 message: input,
-                liked: false,
+                liked: [],
                 likes: 0,
             })
             console.log(Done)
@@ -61,38 +75,33 @@ function SendPost() {
 
     return (
         <Feed>
-            <form className="p-4">
+            <form className="p-4 bg-white rounded-xl shadow-xl">
                 <Top>
                     <div className="items-center flex gap-2"  >
                         <div><Avatar ClassNames="Avatar" src={user.photoURL} /></div>
                         <h2>{user.displayName}</h2>
                     </div>
-
                     <div className="my-4 w-full">
                         <input
                             onChange={(e) => setInput(e.target.value)}
                             className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder={`Ready for meme? ${user.displayName}`} />
                     </div>
-
                     <div className="">
                         <input
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
+
+                            onChange={onURLSubmit}
                             className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder="Image Url" />
                     </div>
-
-
-                    <button className="HiddenBtn hidden" onClick={handleSubmit} type="submit">
-                        Hidden btn
-                </button>
-
                 </Top>
-
+                <div className="preview p-5">
+                    <div className="my-3"><p> {input} </p></div>
+                    <Image imagePreviewUrl={img.imagePreviewUrl} />
+                </div>
                 <Bottom>
-                    <input type='file' value={img} id='file' ref={openFile} style={{ display: 'none' }} />
+                    <input type='file' id='file' onChange={onImageSubmit} ref={openFile} style={{ display: 'none' }} />
                     <div onClick={onButtonClick}>
                         <PhotoLibraryIcon style={{ color: "red" }} />
-                Photo
+                        Photo
                 </div>
                     <div>
                         <button className="btn" onClick={handleSubmit} type="submit">
@@ -101,7 +110,8 @@ function SendPost() {
                     </div>
                 </Bottom>
             </form>
-        </Feed>
+
+        </Feed >
     )
 }
 
@@ -109,44 +119,24 @@ export default SendPost
 
 const Feed = styled.div`
 
-display : flex;
-margin-top: 30px
-color: rgb(231, 231, 231);
-flex-direction: column;
-background-color: white;
-border-radius: 15px;
-box-shadow: 0px 5px 7px -7px rgb(0, 0, 0, 0.75);
-width : 100%;
 
 `
-
-
 const Top = styled.div`
-
-display : flex;
-border-bottom: 1px solid rgb(250, 250, 250);
-padding : 15px;
-padding-bottom : 0px;
-flex-direction : column;
-
-  .Avatar{
-    z-index: -1;
-  }
-    .MsgSender{
-       
+    display : flex;
+    border-bottom: 1px solid rgb(250, 250, 250);
+    padding : 15px;
+    padding-bottom : 0px;
+    flex-direction : column;
+    .Avatar{
+        z-index: -1;
     }
-    .UrlSender{
-        
-    }
-   
 `
 const Bottom = styled.div`
 display: flex;
 justify-content : space-evenly;
-padding: 20px;
+padding-bottom: 10px;
 align-items: center;
 color : gray;
-
 margin : 5px;
 h3{
     color : gray;
@@ -165,7 +155,6 @@ div{
     }
     cursor : pointer;
 }
-
 .btn{
     outline-width: 0;
     border: none;
