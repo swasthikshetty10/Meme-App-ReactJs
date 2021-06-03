@@ -9,6 +9,7 @@ import { useStateValue } from '../Contexts/StateProvider'
 import db from '../firebaseConfig'
 import firebase from 'firebase'
 import { Done } from '@material-ui/icons';
+import img2url from '../Utility/ImageUpload'
 
 function SendPost() {
     const openFile = useRef(null)
@@ -32,7 +33,9 @@ function SendPost() {
                 imagePreviewUrl: reader.result
             });
         }
+
         reader.readAsDataURL(file)
+        img2url(img.imagePreviewUrl)
     }
     const onURLSubmit = (e) => {
         let url = e.target.value;
@@ -74,44 +77,49 @@ function SendPost() {
     }
 
     return (
-        <Feed>
-            <form className="p-4 bg-white rounded-xl shadow-xl">
-                <Top>
-                    <div className="items-center flex gap-2"  >
-                        <div><Avatar ClassNames="Avatar" src={user.photoURL} /></div>
-                        <h2>{user.displayName}</h2>
-                    </div>
-                    <div className="my-4 w-full">
-                        <input
-                            onChange={(e) => setInput(e.target.value)}
-                            className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder={`Ready for meme? ${user.displayName}`} />
-                    </div>
-                    <div className="">
-                        <input
+        <>
+            <Feed>
+                <form className="p-4 bg-white rounded-xl shadow-xl">
+                    <Top>
+                        <div className="items-center flex gap-2"  >
+                            <div><Avatar ClassNames="Avatar" src={user.photoURL} /></div>
+                            <h2>{user.displayName}</h2>
+                        </div>
+                        <div className="my-4 w-full">
+                            <input
+                                onChange={(e) => setInput(e.target.value)}
+                                className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder={`Ready for meme? ${user.displayName}`} />
+                        </div>
+                        <div className="">
+                            <input
 
-                            onChange={onURLSubmit}
-                            className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder="Image Url" />
+                                onChange={onURLSubmit}
+                                className="w-full p-3 bg-gray-100 rounded-xl outline-none" type="text" placeholder="Image Url" />
+                        </div>
+                    </Top>
+                    <div className="preview p-5">
+                        <div className="my-3"><p> {input} </p></div>
+                        <Image imagePreviewUrl={img.imagePreviewUrl} />
                     </div>
-                </Top>
-                <div className="preview p-5">
-                    <div className="my-3"><p> {input} </p></div>
-                    <Image imagePreviewUrl={img.imagePreviewUrl} />
-                </div>
-                <Bottom>
-                    <input type='file' id='file' onChange={onImageSubmit} ref={openFile} style={{ display: 'none' }} />
-                    <div onClick={onButtonClick}>
-                        <PhotoLibraryIcon style={{ color: "red" }} />
+                    <Bottom>
+                        <input type='file' id='file' onChange={onImageSubmit} ref={openFile} style={{ display: 'none' }} />
+                        <div onClick={onButtonClick}>
+                            <PhotoLibraryIcon style={{ color: "red" }} />
                         Photo
                 </div>
-                    <div>
-                        <button className="btn" onClick={handleSubmit} type="submit">
-                            <div>  <SendIcon /><h3>Submit</h3> </div>
-                        </button>
-                    </div>
-                </Bottom>
-            </form>
+                        <div>
+                            <button className="btn" onClick={handleSubmit} type="submit">
+                                <div>  <SendIcon /><h3>Submit</h3> </div>
+                            </button>
+                        </div>
+                    </Bottom>
+                </form>
 
-        </Feed >
+            </Feed >
+            <div className="mt-5">
+
+            </div>
+        </>
     )
 }
 

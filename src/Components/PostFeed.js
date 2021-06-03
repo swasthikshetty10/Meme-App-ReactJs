@@ -76,7 +76,7 @@ export default PostFeed
 const Feed = styled.div`
 
 display : flex;
-margin-top: 30px
+margin-top: 30px;
 color: rgb(231, 231, 231);
 flex-direction: column;
 background-color: white;
