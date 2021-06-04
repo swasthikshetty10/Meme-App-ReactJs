@@ -5,11 +5,11 @@ import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import { useState, useRef } from 'react';
-import { useStateValue } from '../Contexts/StateProvider'
-import db from '../firebaseConfig'
+import { useStateValue } from '../../Contexts/StateProvider'
+import db from '../../firebaseConfig'
 import firebase from 'firebase'
 import { Done } from '@material-ui/icons';
-import img2url from '../Utility/ImageUpload'
+import img2url from '../../Utility/ImageUpload'
 
 function SendPost() {
     const openFile = useRef(null)

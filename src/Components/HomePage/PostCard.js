@@ -6,8 +6,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import QuestionAnswerRoundedIcon from '@material-ui/icons/QuestionAnswerRounded';
 import { useState, useEffect } from 'react'
 // import { useStateValue } from '../Contexts/StateProvider'
-import db from '../firebaseConfig'
-import { useStateValue } from '../Contexts/StateProvider'
+import db from '../../firebaseConfig'
+import { useStateValue } from '../../Contexts/StateProvider'
 function PostCard({ id, profilePic, image, username, timestamp, message, liked, likes }) {
 
     const [{ user }, dispatch] = useStateValue();

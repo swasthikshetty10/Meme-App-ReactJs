@@ -1,13 +1,13 @@
 
 import './App.css';
-import Header from './Components/Header.js'
+import NavBar from './Components/NavBar'
 
-import Sign_Up from './Components/SignUp.js'
-import Feed from './Components/Feed.js'
+import Sign_Up from './Components/Login/SignUp.js'
+import HomePage from './Components/HomePage'
 import AddPosts from './Components/AddPosts'
 import UserPage from './Components/UserPage'
 import Chat from './Components/Chat'
-import Login from './Components/Login.js'
+import Login from './Components/Login'
 import styled from 'styled-components'
 import { Container } from 'react-bootstrap'
 import { useStateValue } from './Contexts/StateProvider'
@@ -40,8 +40,8 @@ function App() {
     return (
       <Router>
 
-        {/* Header Components*/}
-        <Header />
+        {/* NavBar Components*/}
+        <NavBar />
         {/* SideBar Components */}
         <Body>
 
@@ -50,7 +50,7 @@ function App() {
             <Route path="/sendposts" component={AddPosts} />
             <Route path="/chats" component={Chat} />
             <Route path="/user" component={UserPage} />
-            <Route path="/" exact component={Feed} />
+            <Route path="/" exact component={HomePage} />
           </Switch>
         </Body>
       </Router>

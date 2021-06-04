@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useStateValue } from '../Contexts/StateProvider'
-import { auth, provider } from '../firebaseConfig'
-import { actionTypes } from "../Contexts/reducer"
+import { useStateValue } from '../../Contexts/StateProvider'
+import { auth, provider } from '../../firebaseConfig'
+import { actionTypes } from "../../Contexts/reducer"
 
 function Login() {
 
@@ -29,7 +29,7 @@ function Login() {
     <LoginPage>
       <LoginLogo>
         <h1><span>"Just😂</span><span>Memes"</span></h1>
-        <button className="LoginBtn"
+        <button className=" bg-white flex p-3 border border-opacity-50 border-black hover:bg-gray-100"
           type="submit"
           fullWidth
           variant="contained"

@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import SendIcon from '@material-ui/icons/Send';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import { useState } from 'react';
-import { useStateValue } from '../Contexts/StateProvider'
-import db from '../firebaseConfig'
+import { useStateValue } from '../../Contexts/StateProvider'
+import db from '../../firebaseConfig'
 import firebase from 'firebase'
 function PostFeed() {
 
@@ -20,6 +20,7 @@ function PostFeed() {
         e.preventDefault();
         if (url) {
             db.collection('posts').add({
+                userid: user.id,
                 profilePic: user.photoURL,
                 image: url,
                 username: user.displayName,

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Avatar } from '@material-ui/core'
-import { useStateValue } from '../Contexts/StateProvider'
+import { useStateValue } from '../../Contexts/StateProvider'
 function UserPage() {
     const [{ user }, dispatch] = useStateValue();
     console.log(user)

@@ -4,11 +4,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import { Avatar, IconButton } from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Sidebar from './Sidebar.js'
-import { useStateValue } from '../Contexts/StateProvider'
+import Sidebar from '../Sidebar'
+import { useStateValue } from '../../Contexts/StateProvider'
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
@@ -153,7 +151,7 @@ const NavWrapper = styled.div`
 const HeaderLeft = styled.div`
     display : flex;
     .Sidebar{
-        padding: 10px
+        padding: 10px;
     }
     img {
         max-height: 40px;

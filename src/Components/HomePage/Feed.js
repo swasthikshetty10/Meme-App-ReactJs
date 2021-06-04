@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import SendPost from './PostFeed.js'
 import Post from './PostCard.js'
-import db from '../firebaseConfig'
+import db from '../../firebaseConfig'
 import { useState, useEffect } from 'react';
-import { useStateValue } from '../Contexts/StateProvider'
+import { useStateValue } from '../../Contexts/StateProvider'
 function Feed() {
 
     const [posts, SetPost] = useState([]);
